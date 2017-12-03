@@ -10,7 +10,7 @@ public class BlockScript : MonoBehaviour {
     public float moveSpeed = 1f;
 
     Vector3 lastPos = Vector3.zero;
-    bool goingLeft;
+    bool goingDown;
     bool isStopped = false;
 
     DateTime time;
@@ -51,11 +51,11 @@ public class BlockScript : MonoBehaviour {
         TimeSpan deltaTime = now - time;
         time = now;
 
-        lastPos += Vector3.right * (goingLeft ? -1f : 1f) * moveSpeed
+        lastPos += Vector3.up * (goingDown ? -1f : 1f) * moveSpeed
             * (float)deltaTime.TotalSeconds;
 
-        if ((goingLeft && lastPos.x < -3) || (!goingLeft && lastPos.x > 3))
-            goingLeft = !goingLeft;
+        if ((goingDown && lastPos.y < -3) || (!goingDown && lastPos.y > 3))
+            goingDown = !goingDown;
     }
 
     private void OnDestroy()
